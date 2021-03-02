@@ -1,5 +1,6 @@
 from google_play_scraper import reviews_all
 from app_store_scraper import AppStore
+from google_play_scraper import app
 import csv
 
 package_name = 'com.netcompany.smittestop_exposure_notification'
@@ -20,8 +21,8 @@ def play_store_scraper(package):
             score = item['score']
             review = item['content']
 
-            print(f'{x}: {username} says: {review}')
             try:
+                print(f'{x}: {username} says: {review}')
                 writer.writerow({'username': username, 'review': review, 'score': score})
             except:
                 print('Failed to add entry XXX')
@@ -42,11 +43,12 @@ def app_store_scraper(app_name):
             username = review['userName']
             review = review['review']
 
-            print(f'{username} says: {review}')
             try:
+                print(f'{username} says: {review}')
                 writer.writerow({'username': username, 'review': review, 'score': score})
             except:
                 print('Failed to add entry XXX')
 
 
+play_store_scraper(package_name)
 app_store_scraper('smittestop')
